@@ -138,3 +138,16 @@ You should see a similar output:
 [2021-08-13 07:31:09,697] INFO [broker-0-to-controller-send-thread]: Recorded new controller, from now on will use broker localhost:9092 (id: 0 rack: null) (kafka.server.BrokerToControllerRequestThread)
 ```
 
+### 3.3 Creating the first topic
+
+Create the first topic with topic name = demo_topic
+
+> *kafka-topics --bootstrap-server localhost:9092 --topic demo_topic --create*
+
+You should see the following output if the topic is created successfully:
+
+```
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic demo_topic.
+```
+
