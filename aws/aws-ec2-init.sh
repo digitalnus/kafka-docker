@@ -28,7 +28,7 @@ sudo systemctl enable containerd.service
 sudo yum install git -y
 
 # Clone Kafka project into directory
-git clone https://github.com/digitalnus/kafka-docker.git -b master
+git clone https://github.com/digitalnus/kafka-docker.git
 
 #
 # Start up Kafka and Zookeeper
