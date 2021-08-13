@@ -177,3 +177,19 @@ Topic: demo2_topic	TopicId: qUguWcruRUCms6NEF95yPA	PartitionCount: 3	Replication
 	Topic: demo2_topic	Partition: 2	Leader: 0	Replicas: 0	Isr: 0
 ```
 
+### 3.5 Producing topic messages
+
+#### 3.5.1 Producing via console
+
+> *kafka-console-producer --broker-list localhost:9092 --topic demo_topic*
+
+You can start entering the message to put into the demo_topic, press ctrl-c once you have completed the messaging
+
+```
+>This is the first demo message
+>This is the second
+>This is the third
+>Press ctrl-c to complete the messaging after this line
+>^C
+```
+
