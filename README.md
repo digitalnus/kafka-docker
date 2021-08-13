@@ -103,5 +103,13 @@ You will see a similar output:
 [2021-08-13 07:19:29,165] INFO Using checkIntervalMs=60000 maxPerMinute=10000 (org.apache.zookeeper.server.ContainerManager)
 ```
 
+Open another new command window and verify that Zookeeper is writing data to the /tmp/zookeeper folder (as specified in the zookeeper.properties)
 
+> *ls -l /tmp/zookeeper*
+
+You should see a similar output:
+
+```
+drwxr-xr-x  3 user  wheel  96 Aug 13 07:19 version-2
+```
 
