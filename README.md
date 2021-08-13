@@ -113,3 +113,28 @@ You should see a similar output:
 drwxr-xr-x  3 user  wheel  96 Aug 13 07:19 version-2
 ```
 
+### 3.2 Starting Kafka server
+
+Next we are going to start Kafka server by issuing the following command:
+
+> *kafka-server-start config/server.properties*
+
+You should see a similar output:
+
+```
+[2021-08-13 07:31:05,367] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
+[2021-08-13 07:31:06,012] INFO Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation (org.apache.zookeeper.common.X509Util)
+[2021-08-13 07:31:06,190] INFO Registered signal handlers for TERM, INT, HUP (org.apache.kafka.common.utils.LoggingSignalHandler)
+[2021-08-13 07:31:06,197] INFO starting (kafka.server.KafkaServer)
+[2021-08-13 07:31:06,198] INFO Connecting to zookeeper on localhost:2181 (kafka.server.KafkaServer)
+[2021-08-13 07:31:06,237] INFO [ZooKeeperClient Kafka server] Initializing a new session to localhost:2181. (kafka.zookeeper.ZooKeeperClient)
+[2021-08-13 07:31:06,251] INFO Client environment:zookeeper.version=3.5.9-83df9301aa5c2a5d284a9940177808c01bc35cef, built on 01/06/2021 20:03 GMT (org.apache.zookeeper.ZooKeeper)
+[2021-08-13 07:31:06,251] INFO Client environment:host.name=localhost (org.apache.zookeeper.ZooKeeper)
+:
+:
+[2021-08-13 07:31:09,665] INFO Kafka commitId: ebb1d6e21cc92130 (org.apache.kafka.common.utils.AppInfoParser)
+[2021-08-13 07:31:09,666] INFO Kafka startTimeMs: 1628854269641 (org.apache.kafka.common.utils.AppInfoParser)
+[2021-08-13 07:31:09,667] INFO [KafkaServer id=0] started (kafka.server.KafkaServer)
+[2021-08-13 07:31:09,697] INFO [broker-0-to-controller-send-thread]: Recorded new controller, from now on will use broker localhost:9092 (id: 0 rack: null) (kafka.server.BrokerToControllerRequestThread)
+```
+
