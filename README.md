@@ -164,3 +164,16 @@ demo2_topic
 demo_topic
 ```
 
+#### 3.4.1 List a specific topic
+
+> *kafka-topics --bootstrap-server localhost:9092 --topic demo_topic --describe*
+
+This will show in detail the configuration setup of the topic such as partitions, replication-factor etc
+
+```
+Topic: demo2_topic	TopicId: qUguWcruRUCms6NEF95yPA	PartitionCount: 3	ReplicationFactor: 1	Configs: segment.bytes=1073741824
+	Topic: demo2_topic	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
+	Topic: demo2_topic	Partition: 1	Leader: 0	Replicas: 0	Isr: 0
+	Topic: demo2_topic	Partition: 2	Leader: 0	Replicas: 0	Isr: 0
+```
+
