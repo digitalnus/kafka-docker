@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Install docker
+# Update yum and install nc
 sudo yum update -y
+sudo yum install nc -y
+
+# Install docker
 sudo yum install docker -y
 sudo service docker start
 sudo docker -v
