@@ -77,4 +77,12 @@ Option                                   Description
                                            configs.
 ```
 
+## 3.0 Running Kafka
+
+### 3.1 Starting Zookeeper
+
+Assuming that Kafka bin directory is in your environment PATH, issue the following command to start Zookeeper
+
+> *zookeeper-server-start*
+
 
