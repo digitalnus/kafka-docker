@@ -140,9 +140,9 @@ You should see a similar output:
 
 ### 3.3 Creating the first topic
 
-Create the first topic with topic name = demo_topic
+Create the first topic with topic name = demo_topic and start with 3 partitions and only 1 replication factor (as there is only 1 broker up at this moment)
 
-> *kafka-topics --bootstrap-server localhost:9092 --topic demo_topic --create*
+> *kafka-topics --bootstrap-server localhost:9092 --topic demo_topic --create --partitions 3 --replication-factor 1*
 
 You should see the following output if the topic is created successfully:
 
