@@ -2,7 +2,7 @@
 
 ## 1. Overview of Kafka
 
-![Kafka Overview](https://github.com/digitalnus/kafka-docker/blob/main/Screenshot%202021-08-13%20at%205.27.35%20AM.png)
+![Kafka Overview](https://github.com/digitalnus/kafka-docker/blob/main/images/Screenshot%202021-08-13%20at%205.27.35%20AM.png)
 
 ## 2. Install Apache Kafka
 
