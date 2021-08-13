@@ -193,3 +193,11 @@ You can start entering the message to put into the demo_topic, press ctrl-c once
 >^C
 ```
 
+### 3.6 Consuming topic messages
+
+#### 3.6.1 Consuming topic from the beginning
+To consume topic messages from the beginning, append it with the --from-beginning flag. If this is not specified, console consumer will be waiting for the next topic message to be inserted and display the message only.
+
+> *kafka-console-consumer --bootstrap-server localhost:9092 --topic demo_topic --from-beginning*
+
+
