@@ -151,3 +151,16 @@ WARNING: Due to limitations in metric names, topics with a period ('.') or under
 Created topic demo_topic.
 ```
 
+### 3.4 List all topics
+
+After creating topics, verify that it is running by issuing the command:
+
+> *kafka-topics --bootstrap-server localhost:9092 --list*
+
+You should see similar output:
+
+```
+demo2_topic
+demo_topic
+```
+
