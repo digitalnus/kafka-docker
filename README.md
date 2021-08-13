@@ -6,7 +6,7 @@
 
 ## 2. Install Apache Kafka
 
-Navigate to https://kafka.apache.org/downloads and download the latest version of Kafka
+This section covers the Kafka installation procedures in Mac.
 
 ### 2.1 Mac Installation
 
