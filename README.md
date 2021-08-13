@@ -83,6 +83,25 @@ Option                                   Description
 
 Assuming that Kafka bin directory is in your environment PATH, issue the following command to start Zookeeper
 
-> *zookeeper-server-start*
+> *zookeeper-server-start config/zookeeper.properties*
+
+You will see a similar output:
+
+```
+[2021-08-13 07:19:28,878] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-08-13 07:19:28,882] WARN config/zookeeper.properties is relative. Prepend ./ to indicate that you're sure! (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-08-13 07:19:28,893] INFO clientPortAddress is 0.0.0.0:2181 (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-08-13 07:19:28,894] INFO secureClientPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+[2021-08-13 07:19:28,899] INFO autopurge.snapRetainCount set to 3 (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-08-13 07:19:28,899] INFO autopurge.purgeInterval set to 0 (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-08-13 07:19:28,899] INFO Purge task is not scheduled. (org.apache.zookeeper.server.DatadirCleanupManager)
+[2021-08-13 07:19:28,899] WARN Either no config or no quorum defined in config, running  in standalone mode (org.apache.zookeeper.server.quorum.QuorumPeerMain)
+:
+:
+:
+[2021-08-13 07:19:29,153] INFO PrepRequestProcessor (sid:0) started, reconfigEnabled=false (org.apache.zookeeper.server.PrepRequestProcessor)
+[2021-08-13 07:19:29,165] INFO Using checkIntervalMs=60000 maxPerMinute=10000 (org.apache.zookeeper.server.ContainerManager)
+```
+
 
 
