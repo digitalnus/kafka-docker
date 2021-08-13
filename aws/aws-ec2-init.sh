@@ -33,5 +33,5 @@ git clone https://github.com/digitalnus/kafka-docker.git -b master
 #
 # Start up Kafka and Zookeeper
 #
-cd kafka-docker
+cd kafka-docker/docker
 sudo docker-compose up -d 
