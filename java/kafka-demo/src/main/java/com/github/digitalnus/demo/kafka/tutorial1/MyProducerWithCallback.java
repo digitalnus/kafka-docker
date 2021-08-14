@@ -2,10 +2,8 @@ package com.github.digitalnus.demo.kafka.tutorial1;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.Properties;
+
 
 /**
  * MyProducer - Send message to the Kafka server.
@@ -24,11 +22,9 @@ import java.util.Properties;
  * kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group demo_app
  *
  */
-public class MyProducerWithCallback {
+public class MyProducerWithCallback extends AbstractKafka {
 
-    private Properties props = new Properties();
     private KafkaProducer <String,String> producer;
-    private Logger logger = LoggerFactory.getLogger(MyProducerWithCallback.class);
 
     MyProducerWithCallback(String bootstrapServer) {
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServer);
