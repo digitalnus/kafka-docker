@@ -235,5 +235,5 @@ b) IntelliJ Community Edition Download: https://www.jetbrains.com/idea/download/
 
 c) Kafka Clients: https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
 
-
+d) Kafka API Documentation: https://kafka.apache.org/documentation/
 
