@@ -208,7 +208,7 @@ To consume topic messages from the beginning, append it with the --from-beginnin
 
 #### 3.6.2 Specifying a group option
 
-Append the --group <group name> to include a consume group.
+Append the --group [group name] to include a consume group.
 
 Group allows consumers to round robin and read the messages coming from a producer.
 
@@ -225,5 +225,12 @@ You can consume messages using key-value pairs as such:
 	
 > *kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning --property print.key=true --property key.separator=,*
 	
+## 4.0 
+
+## References
+
+a) Java JDK 8 Download: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+b) IntelliJ Community Edition Download: https://www.jetbrains.com/idea/download/
 
 
