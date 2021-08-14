@@ -193,3 +193,47 @@ You can start entering the message to put into the demo_topic, press ctrl-c once
 >^C
 ```
 
+#### 3.5.2 Producer with key-value parsing
+To enable key-value pairs parsing capabilities for the producer, use the --property with parse.key=true and specifying the separator using key.separator as such:
+
+> *kafka-console-producer --broker-list 127.0.0.1:9092 --topic demo_topic --property parse.key=true --property key.separator=,*
+
+
+### 3.6 Consuming topic messages
+
+#### 3.6.1 Consuming topic from the beginning
+To consume topic messages from the beginning, append it with the --from-beginning flag. If this is not specified, console consumer will be waiting for the next topic message to be inserted and display the message only.
+
+> *kafka-console-consumer --bootstrap-server localhost:9092 --topic demo_topic --from-beginning*
+
+#### 3.6.2 Specifying a group option
+
+Append the --group [group name] to include a consume group.
+
+Group allows consumers to round robin and read the messages coming from a producer.
+
+For example, producer added "Message 1", "Message 2" and "Message 3" to the queue, if there are 3 consumers in the same group, then each of the consumer will get one of the 3 messages. Groups allow load to be shared amont consumers in a group.	
+
+Note: Once --group is specified, the consumer_offset will be committed, meaning that all previous messages that were read will not appear again if the same command is run again.
+
+> *kafka-console-consumer --bootstrap-server localhost:9092 --topic demo_topic --group demo_group*
+
+	
+#### 3.6.3 Consuming key-value pair messages
+
+You can consume messages using key-value pairs as such:
+	
+> *kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning --property print.key=true --property key.separator=,*
+	
+## 4.0 
+
+## References
+
+a) Java JDK 8 Download: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+b) IntelliJ Community Edition Download: https://www.jetbrains.com/idea/download/
+
+c) Kafka Clients: https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+
+
+
