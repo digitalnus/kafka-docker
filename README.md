@@ -237,3 +237,17 @@ c) Kafka Clients: https://mvnrepository.com/artifact/org.apache.kafka/kafka-clie
 
 d) Kafka API Documentation: https://kafka.apache.org/documentation/
 
+e) Twitter API
+
+Twitter Java Client    : https://github.com/twitter/hbc
+
+Twitter API Credentials: https://developer.twitter.com/
+
+f) Elastic Search
+
+Elastic Search Java Client  : 
+
+https://www.elastic.co/guide/en/elasticsearch/client/java-rest/6.4/java-rest-high.html or
+https://bonsai.io/
+
+
