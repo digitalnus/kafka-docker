@@ -233,4 +233,7 @@ a) Java JDK 8 Download: http://www.oracle.com/technetwork/java/javase/downloads/
 
 b) IntelliJ Community Edition Download: https://www.jetbrains.com/idea/download/
 
+c) Kafka Clients: https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+
+
 
