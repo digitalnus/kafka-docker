@@ -7,6 +7,23 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 
+/**
+ * MyProducer - Send message to the Kafka server.
+ * Before running this code, open up 3 terminals and start the zookeeper, kafka server and kafka-console-consumer
+ * for this code to work.
+ *
+ * 1) Starting zookeeper
+ * zookeeper-server-start config/zookeeper.properties
+ *
+ * 2) Starting kafka-server
+ * kafka-server-start config/server.properties
+ *
+ * 3) Starting kafka-console-consumer
+ * Replace the group name and topic with the appropriate values
+ *
+ * kafka-console-consumer --bootstrap-server localhost:9092 --topic first_topic --group demo_app
+ *
+ */
 public class MyProducer {
 
     public static void main(String[] args) {
@@ -17,7 +34,7 @@ public class MyProducer {
 
         KafkaProducer <String,String> producer = new KafkaProducer<>(props);
 
-        ProducerRecord <String, String> record = new ProducerRecord<>("first_topic","hello world!");
+        ProducerRecord <String, String> record = new ProducerRecord<>("first_topic","2nd message");
 
         producer.send(record);
 
