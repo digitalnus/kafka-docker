@@ -26,45 +26,64 @@ import java.util.Properties;
  */
 public class MyProducerWithCallback {
 
-    public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(MyProducerWithCallback.class);
+    private Properties props = new Properties();
+    private KafkaProducer <String,String> producer;
+    private Logger logger = LoggerFactory.getLogger(MyProducerWithCallback.class);
 
-        Properties props = new Properties();
-        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"127.0.0.1:9092");
+    MyProducerWithCallback(String bootstrapServer) {
+        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServer);
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
 
-        KafkaProducer <String,String> producer = new KafkaProducer<>(props);
+        producer = new KafkaProducer<String, String>(props);
+    }
 
-        String topic = "first_topic";
-        String message = "This is message #";
-        for(int i=0; i<10; i++) {
-            // Creating the message
-            ProducerRecord <String, String> record = new ProducerRecord<>(topic,message+Integer.toString(i));
+    public void sendMessage(String topic, String key, String message) {
+        // Creating the message
+        ProducerRecord <String, String> record;
+        if(key!=null) {
+            record = new ProducerRecord<>(topic,key, message);
+        } else {
+            record = new ProducerRecord<>(topic,message);
+        }
 
-            // Sending the message
-            producer.send(record, new Callback() {
-                @Override
-                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                    if (e == null) {
-                        // data was sent successfully
-                        logger.info("Data sent successfully. \n"+
-                                "Topic    : "+recordMetadata.topic()+"\n"+
-                                "Partition: "+recordMetadata.partition()+"\n"+
-                                "Offset   : "+recordMetadata.offset()+"\n"+
-                                "Timestamp: "+recordMetadata.timestamp()+"\n");
-                    } else {
-                        // there was an exception when sending the message, deal with it
-                        logger.error(e.getLocalizedMessage());
-                    }
+        // Sending the message
+        producer.send(record, new Callback() {
+            @Override
+            public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                if (e == null) {
+                    // data was sent successfully
+                    logger.info("Data sent successfully. \n"+
+                            "Topic    : "+recordMetadata.topic()+"\n"+
+                            "Partition: "+recordMetadata.partition()+"\n"+
+                            "Offset   : "+recordMetadata.offset()+"\n"+
+                            "Timestamp: "+recordMetadata.timestamp()+"\n");
+                } else {
+                    // there was an exception when sending the message, deal with it
+                    logger.error(e.getLocalizedMessage());
                 }
-            });
+            }
+        });
 
-            // Async , need to flush
-            producer.flush();
-        } // For loop
+        // Async , need to flush
+        producer.flush();
+    }
 
+    public void sendMessage(String topic, String message) {
+        sendMessage(topic,null,message);
+    }
+
+    public void close() {
         // Closing the stream
         producer.close();
+    }
+
+    public static void main(String[] args) {
+        String server = "127.0.0.1:9092";
+        MyProducerWithCallback myproducer = new MyProducerWithCallback(server);
+        for (int i=0; i<10; i++) {
+            myproducer.sendMessage("first_topic", "This is message #" + Integer.toString(i));
+        }
+        myproducer.close();
     }
 }
