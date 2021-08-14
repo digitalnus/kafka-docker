@@ -1,8 +1,29 @@
 package com.github.digitalnus.demo.kafka.tutorial1;
 
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
+
+import java.util.Properties;
+
 public class MyProducer {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Properties props = new Properties();
+        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"127.0.0.1:9092");
+        props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
+
+        KafkaProducer <String,String> producer = new KafkaProducer<>(props);
+
+        ProducerRecord <String, String> record = new ProducerRecord<>("first_topic","hello world!");
+
+        producer.send(record);
+
+        // Async , need to flush
+        producer.flush();
+        producer.close();
+
     }
 }
