@@ -34,6 +34,8 @@ public class MyProducerWithCallback extends AbstractKafka {
         producer = new KafkaProducer<>(props);
     }
 
+
+
     public void sendMessage(String topic, String key, String message) {
         // Creating the message
         ProducerRecord <String, String> record;
@@ -69,10 +71,14 @@ public class MyProducerWithCallback extends AbstractKafka {
         sendMessage(topic,null,message);
     }
 
-    public void close() {
-        // Closing the stream
-        producer.close();
+    protected void cleanup() {
+        if(producer!=null)
+        {
+            // Closing the stream
+            producer.close();
+        }
     }
+
 
     public static void main(String[] args) {
         String server = "127.0.0.1:9092";
@@ -80,6 +86,5 @@ public class MyProducerWithCallback extends AbstractKafka {
         for (int i=0; i<10; i++) {
             myproducer.sendMessage("first_topic", "This is message #" + i);
         }
-        myproducer.close();
     }
 }

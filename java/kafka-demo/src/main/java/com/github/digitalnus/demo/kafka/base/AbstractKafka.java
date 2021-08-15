@@ -10,9 +10,12 @@ public abstract class AbstractKafka {
 
     public AbstractKafka() {
         logger = LoggerFactory.getLogger(getClass());
+        cleanup();
     }
 
-
+    // Subclass need to implement this cleanup method to cleanup or close any connection upon
+    // exiting the application
+    protected abstract void cleanup();
 
 
 }

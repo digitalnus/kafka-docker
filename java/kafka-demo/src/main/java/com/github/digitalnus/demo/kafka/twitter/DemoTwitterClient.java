@@ -41,6 +41,10 @@ public class DemoTwitterClient extends AbstractKafka {
         Authentication hosebirdAuth = new OAuth1("consumerKey", "consumerSecret", "token", "secret");
     }
 
+    protected void cleanup() {
+        // Nothing to cleanup here
+    }
+
     public void run() {
         logger.debug("Inside run() method ...");
     }

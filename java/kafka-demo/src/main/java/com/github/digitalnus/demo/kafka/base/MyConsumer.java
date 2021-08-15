@@ -46,7 +46,12 @@ public class MyConsumer extends AbstractKafka {
     public void listen() {
         // Listen for messages from the producer
         logger.debug("Listening for new messages ... ");
+    }
 
+    protected void cleanup() {
+        if(consumer!=null) {
+            consumer.close();
+        }
     }
 
     public static void main(String[] args) {
