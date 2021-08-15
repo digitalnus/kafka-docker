@@ -34,13 +34,10 @@ public class DemoTwitterClient extends AbstractKafka {
     private static final String KAFKA_SERVER="KAFKA_SERVER";
 
     private BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>(1000);
+    private Client client;
 
     // Following terms - Empty list in the beginning
     List<String> terms = new ArrayList<>();
-
-    // Following people in Twitter, not used, comment off
-//        List<Long> followings = Lists.newArrayList(1234L, 566788L);
-//        hosebirdEndpoint.followings(followings);
 
     public DemoTwitterClient() {
     }
@@ -48,6 +45,11 @@ public class DemoTwitterClient extends AbstractKafka {
     protected void cleanup() {
         // Nothing to cleanup here
         removeAllTerms();
+
+        logger.info("Stopping client ...");
+        if(client!=null) {
+            client.stop();
+        }
     }
 
     /**
@@ -109,7 +111,7 @@ public class DemoTwitterClient extends AbstractKafka {
         BlockingQueue<String> msgQueue = new LinkedBlockingQueue<>(1000);
 
         // Create Twitter Client
-        Client client = createTwitterClient(msgQueue);
+        client = createTwitterClient(msgQueue);
 
         // Create a MyProducerWithCallback object that will allow posting of messages received from
         // Twitter tweets to be posted into the Kafka partitions

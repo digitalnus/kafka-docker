@@ -16,6 +16,11 @@ public abstract class AbstractKafka {
     public AbstractKafka() {
         logger = LoggerFactory.getLogger(getClass());
         loadEnv();
+
+        // Perform any clean up actions when program exits
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            cleanup();
+        }));
     }
 
     // Subclass need to implement this cleanup method to cleanup or close any connection upon

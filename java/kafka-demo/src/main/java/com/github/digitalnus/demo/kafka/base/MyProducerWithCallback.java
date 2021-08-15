@@ -74,6 +74,7 @@ public class MyProducerWithCallback extends AbstractKafka {
     protected void cleanup() {
         if(producer!=null)
         {
+            logger.info("Stopping producer ...");
             // Closing the stream
             producer.close();
         }
