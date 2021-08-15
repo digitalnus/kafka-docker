@@ -22,6 +22,10 @@ import java.util.concurrent.LinkedBlockingQueue;
  *
  */
 public class DemoTwitterClient extends AbstractKafka {
+    private static final String CONSUMER_KEY="TWITTER_API";
+    private static final String CONSUMER_SECRET="TWITTER_SECRET";
+    private static final String TOKEN="TWITTER_ACCESS_TOKEN";
+    private static final String TOKEN_SECRET="TWITTER_TOKEN_SECRET";
 
     /** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
     private BlockingQueue<String> msgQueue = new LinkedBlockingQueue<>(100000);
@@ -42,7 +46,8 @@ public class DemoTwitterClient extends AbstractKafka {
         hosebirdEndpoint.trackTerms(terms);
 
         // These secrets should be read from a config file
-        Authentication hosebirdAuth = new OAuth1("consumerKey", "consumerSecret", "token", "secret");
+        Authentication hosebirdAuth = new OAuth1(getEnv(CONSUMER_KEY), getEnv(CONSUMER_SECRET), getEnv(TOKEN), getEnv(TOKEN_SECRET));
+
     }
 
     protected void cleanup() {
