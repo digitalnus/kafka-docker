@@ -1,4 +1,4 @@
-package com.github.digitalnus.demo.kafka.tutorial1;
+package com.github.digitalnus.demo.kafka.base;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -31,7 +31,7 @@ public class MyProducerWithCallback extends AbstractKafka {
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
 
-        producer = new KafkaProducer<String, String>(props);
+        producer = new KafkaProducer<>(props);
     }
 
     public void sendMessage(String topic, String key, String message) {
@@ -78,7 +78,7 @@ public class MyProducerWithCallback extends AbstractKafka {
         String server = "127.0.0.1:9092";
         MyProducerWithCallback myproducer = new MyProducerWithCallback(server);
         for (int i=0; i<10; i++) {
-            myproducer.sendMessage("first_topic", "This is message #" + Integer.toString(i));
+            myproducer.sendMessage("first_topic", "This is message #" + i);
         }
         myproducer.close();
     }

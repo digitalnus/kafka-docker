@@ -1,4 +1,4 @@
-package com.github.digitalnus.demo.kafka.tutorial1;
+package com.github.digitalnus.demo.kafka.base;
 
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * MyProducer - Send message to the Kafka server.
+ * MyConsumer - Receives message from the Kafka server.
  * Before running this code, open up 3 terminals and start the zookeeper, kafka server and kafka-console-consumer
  * for this code to work.
  *
@@ -29,7 +29,7 @@ public class MyConsumer extends AbstractKafka {
 
     private KafkaConsumer<String,String> consumer;
 
-    MyConsumer(String bootstrapServer, String groupId, List topicList) {
+    MyConsumer(String bootstrapServer, String groupId, List <String> topicList) {
         props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServer);
         props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
@@ -37,17 +37,24 @@ public class MyConsumer extends AbstractKafka {
         props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
 
         // Create the consumer
-        consumer = new KafkaConsumer<String, String>(props);
+        consumer = new KafkaConsumer<>(props);
 
         // Subscribe to a list of topic(s)
         consumer.subscribe(topicList);
     }
 
+    public void listen() {
+        // Listen for messages from the producer
+        logger.debug("Listening for new messages ... ");
+
+    }
+
     public static void main(String[] args) {
         String server = "127.0.0.1:9092";
         String groupId = "my-demo-group";
-        List topicList = Arrays.asList("first_topic");
+        List <String> topicList = Arrays.asList("first_topic");
 
         MyConsumer myconsumer = new MyConsumer(server,groupId, topicList);
+        myconsumer.listen();
     }
 }
