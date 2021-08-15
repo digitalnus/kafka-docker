@@ -26,7 +26,7 @@ public class MyProducerWithCallback extends AbstractKafka {
 
     private KafkaProducer <String,String> producer;
 
-    MyProducerWithCallback(String bootstrapServer) {
+    public MyProducerWithCallback(String bootstrapServer) {
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServer);
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());

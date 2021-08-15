@@ -2,6 +2,7 @@ package com.github.digitalnus.demo.kafka.twitter;
 
 
 import com.github.digitalnus.demo.kafka.base.AbstractKafka;
+import com.github.digitalnus.demo.kafka.base.MyProducerWithCallback;
 import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;
 import com.twitter.hbc.core.Constants;
@@ -12,6 +13,7 @@ import com.twitter.hbc.core.event.Event;
 import com.twitter.hbc.core.processor.StringDelimitedProcessor;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import com.twitter.hbc.httpclient.auth.OAuth1;
+import org.apache.kafka.clients.producer.KafkaProducer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,14 +31,9 @@ public class DemoTwitterClient extends AbstractKafka {
     private static final String CONSUMER_SECRET="TWITTER_SECRET";
     private static final String TOKEN="TWITTER_ACCESS_TOKEN";
     private static final String TOKEN_SECRET="TWITTER_TOKEN_SECRET";
-
-
+    private static final String KAFKA_SERVER="KAFKA_SERVER";
 
     private BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>(1000);
-
-
-
-
 
     // Following terms - Empty list in the beginning
     List<String> terms = new ArrayList<>();
@@ -99,6 +96,11 @@ public class DemoTwitterClient extends AbstractKafka {
         return hosebirdClient;
     }
 
+    private MyProducerWithCallback createKafkaProducer() {
+        String kafkaServer = getEnv(KAFKA_SERVER);
+        return new MyProducerWithCallback(kafkaServer);
+    }
+
 
     public void run()  {
         logger.debug("Inside run() method ...");
@@ -108,6 +110,10 @@ public class DemoTwitterClient extends AbstractKafka {
 
         // Create Twitter Client
         Client client = createTwitterClient(msgQueue);
+
+        // Create a MyProducerWithCallback object that will allow posting of messages received from
+        // Twitter tweets to be posted into the Kafka partitions
+        MyProducerWithCallback producer = createKafkaProducer();
 
         // Attempts to establish a connection.
         client.connect();
@@ -124,6 +130,7 @@ public class DemoTwitterClient extends AbstractKafka {
 
             if(msg!=null) {
                 logger.info("Received message: "+msg);
+                producer.sendMessage("twitter_tweets",msg);
             }
         } // while loop
         logger.info("End of application run");
@@ -132,7 +139,7 @@ public class DemoTwitterClient extends AbstractKafka {
 
     public static void main(String[] args) {
         DemoTwitterClient client = new DemoTwitterClient();
-        client.addTerms("ethereum");
+        client.addTerms("kafka");
         client.run();
     }
 
