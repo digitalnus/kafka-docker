@@ -198,6 +198,12 @@ To enable key-value pairs parsing capabilities for the producer, use the --prope
 
 > *kafka-console-producer --broker-list 127.0.0.1:9092 --topic demo_topic --property parse.key=true --property key.separator=,*
 
+#### 3.5.3 Producer Safe Configuration
+
+![Producer Configurations](https://github.com/digitalnus/kafka-docker/blob/main/images/Screenshot%202021-08-16%20at%204.36.33%20PM.png)
+
+Idempotent Producer will ensure that there will not be duplicate messages committed by Kafka should there be an issue such as network unavailability after Kafka received and committed the message but the ack did not reach the producer.
+
 
 ### 3.6 Consuming topic messages
 
